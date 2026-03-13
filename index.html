@@ -21,6 +21,8 @@
       --gold: #f0c57a;
       --rose: #e46b7f;
       --crimson: #b31f3f;
+      --neon-pink: #ff4fb7;
+      --neon-cyan: #42d9ff;
       --wine: #6e2848;
       --glow: rgba(240, 197, 122, 0.28);
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
@@ -65,6 +67,16 @@
       z-index: 0;
     }
 
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, 0.14) 3px, rgba(0, 0, 0, 0.14) 4px);
+      pointer-events: none;
+      opacity: 0.45;
+      z-index: 0;
+    }
+
     a {
       color: inherit;
     }
@@ -84,6 +96,31 @@
       gap: 1rem;
       padding: 1.2rem 0;
       border-bottom: 1px solid var(--line);
+    }
+
+    .topbar,
+    .ticker,
+    .card,
+    .quote-panel,
+    .manifest-panel,
+    .gallery-card,
+    .mood-tile,
+    .social-panel {
+      position: relative;
+    }
+
+    .topbar::after,
+    .ticker::after,
+    .card::after,
+    .quote-panel::after,
+    .manifest-panel::after,
+    .mood-tile::after,
+    .social-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(66, 217, 255, 0.04), 0 0 24px rgba(255, 79, 183, 0.06);
     }
 
     .brand {
@@ -205,6 +242,18 @@
       border-color: var(--line-strong);
     }
 
+    .button-neon {
+      color: #fff4fb;
+      background: linear-gradient(135deg, rgba(255, 79, 183, 0.24), rgba(66, 217, 255, 0.18));
+      border: 1px solid rgba(255, 79, 183, 0.42);
+      box-shadow: 0 0 20px rgba(255, 79, 183, 0.18);
+    }
+
+    .button-neon:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(255, 79, 183, 0.3);
+    }
+
     .hero-note {
       margin-top: 1.4rem;
       font-size: 0.82rem;
@@ -265,6 +314,30 @@
       letter-spacing: 0.34em;
       text-transform: uppercase;
       color: var(--text-faint);
+    }
+
+    .neon-orb {
+      position: absolute;
+      width: 14rem;
+      height: 14rem;
+      border-radius: 50%;
+      filter: blur(28px);
+      opacity: 0.24;
+      mix-blend-mode: screen;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .neon-orb.pink {
+      top: 8%;
+      right: -6%;
+      background: var(--neon-pink);
+    }
+
+    .neon-orb.cyan {
+      bottom: 10%;
+      left: -8%;
+      background: var(--neon-cyan);
+      animation-delay: -2.6s;
     }
 
     .spotlight {
@@ -590,6 +663,83 @@
       color: #fff0d4;
     }
 
+    .social-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .social-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+      box-shadow: var(--shadow);
+    }
+
+    .social-panel.image-panel {
+      min-height: 30rem;
+    }
+
+    .social-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .social-content {
+      padding: 1.6rem;
+    }
+
+    .social-intro {
+      color: var(--text-soft);
+      line-height: 1.85;
+      margin-top: 0.8rem;
+    }
+
+    .link-stack {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      display: block;
+      padding: 1.1rem 1.15rem;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 79, 183, 0.38);
+      box-shadow: 0 0 20px rgba(255, 79, 183, 0.12);
+    }
+
+    .social-link strong {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .social-link span {
+      display: block;
+      margin-top: 0.55rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    .social-link code {
+      color: #ffd7f0;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+    }
+
     .card {
       padding: 1.35rem 1.35rem 1.55rem;
       border: 1px solid var(--line);
@@ -724,13 +874,23 @@
       to { transform: translateX(-50%); }
     }
 
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(0.96);
+      }
+      50% {
+        transform: translate3d(0, -14px, 0) scale(1.05);
+      }
+    }
+
     @media (max-width: 980px) {
       .hero,
       .section-header,
       .manifesto,
       .cards,
       .moodband,
-      .gallery {
+      .gallery,
+      .social-grid {
         grid-template-columns: 1fr;
       }
 
@@ -808,6 +968,7 @@
         <a href="#presence">Presence</a>
         <a href="#ode">Ode</a>
         <a href="#myth">Myth</a>
+        <a href="#socials">Links</a>
       </nav>
     </header>
 
@@ -833,6 +994,8 @@
       <div class="art-panel" aria-hidden="true">
         <div class="spotlight"></div>
         <div class="stage-arch"></div>
+        <div class="neon-orb pink"></div>
+        <div class="neon-orb cyan"></div>
         <img class="art-photo-main" src="g5emop0b27.jpeg" alt="">
         <img class="art-photo-accent" src="dbko4byb1h.jpeg" alt="">
         <div class="constellation">
@@ -984,6 +1147,49 @@
       </div>
     </section>
 
+    <section class="section" id="socials">
+      <div class="section-header">
+        <div class="section-tag">Act III · The Links</div>
+        <div>
+          <h2>Find her where the spotlight keeps going.</h2>
+          <p class="section-copy">
+            If someone wants more after the page, the next steps should be direct: the public feed first,
+            then the exclusive platform for people who want to support her further.
+          </p>
+        </div>
+      </div>
+
+      <div class="social-grid">
+        <div class="social-panel">
+          <div class="social-content">
+            <p class="eyebrow">Social Destinations</p>
+            <p class="social-intro">
+              The links are part of the design now, not an afterthought. Instagram carries the public persona.
+              OnlyFans extends the more exclusive side of the brand.
+            </p>
+
+            <div class="link-stack">
+              <a class="social-link" href="https://www.instagram.com/pinknitro/" target="_blank" rel="noreferrer">
+                <strong>Instagram</strong>
+                <span>Follow <code>@pinknitro</code> for the public feed, nightlife portraits, and main visual identity.</span>
+              </a>
+
+              <a class="social-link" href="https://onlyfans.com/pinknitro" target="_blank" rel="noreferrer">
+                <strong>OnlyFans</strong>
+                <span>Support Pink Nitro directly and continue into the more exclusive side of her online presence.</span>
+              </a>
+
+              <a class="button button-neon" href="https://www.instagram.com/pinknitro/" target="_blank" rel="noreferrer">Enter Her Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <figure class="social-panel image-panel">
+          <img src="20260313_02h19m58s_grim.png" alt="Promotional image for Pink Nitro's OnlyFans profile.">
+        </figure>
+      </div>
+    </section>
+
     <footer class="finale">
       <p>Final Tableau</p>
       <p>For Pink Nitro, who makes every room look like it was booked for her entrance.</p>
@@ -991,4 +1197,3 @@
   </main>
 </body>
 </html>
-
