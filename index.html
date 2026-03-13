@@ -275,33 +275,15 @@
       isolation: isolate;
     }
 
-    .art-photo-main,
-    .art-photo-accent {
-      position: absolute;
-      object-fit: cover;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-    }
-
-    .art-photo-main {
-      inset: 3.4rem 4.2rem 4rem 6.6rem;
-      width: auto;
-      height: auto;
-      border: 1px solid rgba(243, 223, 190, 0.16);
-    }
-
-    .art-photo-accent {
-      right: 1.8rem;
-      bottom: 1.8rem;
-      width: 9.5rem;
-      aspect-ratio: 4 / 5;
-      border: 1px solid rgba(243, 223, 190, 0.22);
-    }
-
     .art-link {
       position: absolute;
       display: block;
+      overflow: hidden;
       transition: transform 180ms ease, box-shadow 180ms ease;
       z-index: 1;
+      background-size: cover;
+      background-repeat: no-repeat;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
     }
 
     .art-link:hover {
@@ -310,6 +292,10 @@
 
     .art-link.main {
       inset: 3.4rem 4.2rem 4rem 6.6rem;
+      border-radius: 0.2rem;
+      border: 1px solid rgba(243, 223, 190, 0.16);
+      background-image: url("g5emop0b27.jpeg");
+      background-position: 54% 18%;
     }
 
     .art-link.accent {
@@ -317,6 +303,9 @@
       bottom: 1.8rem;
       width: 9.5rem;
       aspect-ratio: 4 / 5;
+      border: 1px solid rgba(243, 223, 190, 0.22);
+      background-image: url("dbko4byb1h.jpeg");
+      background-position: center center;
     }
 
     .art-panel::before {
@@ -934,12 +923,8 @@
         <div class="stage-arch"></div>
         <div class="neon-orb pink"></div>
         <div class="neon-orb cyan"></div>
-        <a class="art-link main" href="https://www.instagram.com/pinknitro/" target="_blank" rel="noreferrer" aria-label="Open Pink Nitro Instagram">
-          <img class="art-photo-main" src="g5emop0b27.jpeg" alt="Pink Nitro hero portrait linking to Instagram.">
-        </a>
-        <a class="art-link accent" href="https://www.instagram.com/pinknitro/" target="_blank" rel="noreferrer" aria-label="Open Pink Nitro Instagram">
-          <img class="art-photo-accent" src="dbko4byb1h.jpeg" alt="Pink Nitro accent portrait linking to Instagram.">
-        </a>
+        <a class="art-link main" href="https://www.instagram.com/pinknitro/" target="_blank" rel="noreferrer" aria-label="Open Pink Nitro Instagram"></a>
+        <a class="art-link accent" href="https://www.instagram.com/pinknitro/" target="_blank" rel="noreferrer" aria-label="Open Pink Nitro Instagram"></a>
         <div class="constellation">
           <span></span>
           <span></span>
